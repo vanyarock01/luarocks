@@ -1,0 +1,28 @@
+{ "package":
+  { "name": "luarocks"
+  , "repo": "luarocks-dev-windows-32"
+  , "subject": "luarocks"
+  , "desc": "Bleeding edge build of LuaRocks"
+  , "website_url": "https://www.luarocks.org"
+  , "issue_tracker_url": "https://github.com/luarocks/luarocks/issues"
+  , "vcs_url": "https://github.com/luarocks/luarocks"
+  , "licenses": ["MIT"]
+  , "labels": ["luarocks", "lua", "lua-modules", "package-manager"]
+  , "public_download_numbers": false
+  , "public_stats": false
+  }
+
+, "version":
+  { "name": "dev"
+  , "gpgSign": false
+  }
+
+, "files":
+  [ { "includePattern": "build-windows-binary/(.*\\.zip)"
+    , "uploadPattern": "$1"
+    }
+  ]
+
+, "publish": true
+
+}

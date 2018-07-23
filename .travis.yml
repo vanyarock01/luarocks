@@ -23,7 +23,14 @@ integration_script: &integration_script
   - ./makedist dev
   - busted -o gtest --exclude-tags=git,unit --verbose -Xhelper "lua_dir=$PWD/lua_install,travis"
   - busted -o gtest --exclude-tags=git,unit --verbose -Xhelper "lua_dir=$PWD/lua_install,travis,env=full"
-          
+
+deploy_script: &deploy_script
+  - sudo apt-get install mingw-w64
+  - ./configure --with-lua=lua_install
+  - make
+  - make windows-binary
+  - make windows-pack
+
 jobs:
   include:
     # Unit tests for linux
@@ -118,7 +125,19 @@ jobs:
       env:
         - LUA="luajit=2.1"
       language: generic
-              
+    # Deploy Windows binary
+    - stage: deploy
+      script: *deploy_script
+      os: linux
+      #addons:
+      #  apt:
+      #    packages:
+      #    - mingw-w64
+      env:
+        - LUA="lua=5.3"
+        - LUAROCKS_DEPLOY="yes"
+      language: generic
+
 before_install:
   - if [ ! -f lua_install/bin/luarocks ]; then pip2 install hererocks; fi
   - if [ ! -f lua_install/bin/luarocks ]; then hererocks lua_install -r^ --$LUA; fi
@@ -143,3 +162,16 @@ notifications:
     on_success: change
     on_failure: always
     on_start: never
+
+#deploy:
+#  on:
+#    branch: bintray
+#    condition: "$LUAROCKS_DEPLOY" = "yes"
+#  provider: bintray
+#  file: "binary/bintray_descriptor.json"
+#  user:
+#    secure: FttIvDhFaLDp1EwJt5JS4ol4EuPr6yjW2HfOyXLMy9BxNWBDJ28w/Z8X0dRbNRKKNOmXMVuo2f/LozVhXq/yv6hQT453g18nKU9Ff7Yney1t9dq5u7H7NlfJ8Nf1rGJ8OMS/asxTzX/GlABPR7tpTWB3OektSNJP1yWjTw6AOHM=
+#  key:
+#    secure: Yq1/STo0q+5w0ZeKYfms4vyBlsvMgHWUGFVJDTZkIEnjE8ASijiS9yUKSBeHs6T7ynSQPc2cmzgPNk8jXkH5XG+tLPpw59SMqzanTA0FuBg1RLnPnTugbNuf7ficiTN1i++IveYlz+68qPBuClgc9+LxWEHp11xgiL/Pd0cv+oY=
+#  skip_cleanup: true
+

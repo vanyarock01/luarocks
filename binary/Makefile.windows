@@ -68,6 +68,11 @@ windows-deps/lib/libbz2.a: build-windows-deps/bzip2-$(BZIP2_VERSION)
 	mkdir -p windows-deps/lib
 	cd build-windows-deps/bzip2-$(BZIP2_VERSION) && cp libbz2.a ../../windows-deps/lib
 
+windows-pack:
+	cd build-windows-binary && mkdir luarocks-$(LUAROCKS_VERSION)-windows-32
+	cd build-windows-binary && mv *.exe luarocks-$(LUAROCKS_VERSION)-windows-32
+	cd build-windows-binary && zip luarocks-$(LUAROCKS_VERSION)-windows-32.zip luarocks-$(LUAROCKS_VERSION)-windows-32/*
+
 windows-clean:
 	rm -rf windows-deps
 	rm -rf build-windows-binary
