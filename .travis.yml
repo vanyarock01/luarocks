@@ -29,7 +29,7 @@ deploy_script: &deploy_script
   - ./configure --with-lua=lua_install
   - make
   - make windows-binary MINGW_SYSROOT=/usr/i686-w64-mingw32/lib/
-  - make windows-pack
+  - make windows-pack LUAROCKS_VERSION=dev
 
 jobs:
   include:
