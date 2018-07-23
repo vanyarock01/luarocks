@@ -102,6 +102,9 @@ bootstrap: luarocks $(SYSCONFDIR)/config-$(LUA_VERSION).lua
 windows-binary: luarocks
 	make -f binary/Makefile.windows windows-binary
 
+windows-pack:
+	make -f binary/Makefile.windows windows-pack
+
 windows-clean:
 	make -f binary/Makefile.windows windows-clean
 
