@@ -129,14 +129,13 @@ jobs:
     - stage: deploy
       script: *deploy_script
       os: linux
-      #addons:
-      #  apt:
-      #    packages:
-      #    - mingw-w64
+      addons:
+        apt:
+          packages:
+          - mingw-w64
       env:
         - LUA="lua=5.3"
         - LUAROCKS_DEPLOY="yes"
-      language: generic
 
 before_install:
   - if [ ! -f lua_install/bin/luarocks ]; then pip2 install hererocks; fi
