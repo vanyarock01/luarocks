@@ -28,7 +28,7 @@ deploy_script: &deploy_script
   - sudo apt-get install mingw-w64
   - ./configure --with-lua=lua_install
   - make
-  - make windows-binary
+  - make windows-binary MINGW_SYSROOT=/usr/i686-w64-mingw32/lib/
   - make windows-pack
 
 jobs:
