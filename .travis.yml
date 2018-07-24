@@ -166,7 +166,7 @@ deploy:
   on:
     branch: bintray
   provider: bintray
-  file: "binary/bintray_descriptor.json"
+  file: .bintray.json
   user:
     secure: FttIvDhFaLDp1EwJt5JS4ol4EuPr6yjW2HfOyXLMy9BxNWBDJ28w/Z8X0dRbNRKKNOmXMVuo2f/LozVhXq/yv6hQT453g18nKU9Ff7Yney1t9dq5u7H7NlfJ8Nf1rGJ8OMS/asxTzX/GlABPR7tpTWB3OektSNJP1yWjTw6AOHM=
   key:
