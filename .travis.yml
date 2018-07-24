@@ -162,15 +162,13 @@ notifications:
     on_failure: always
     on_start: never
 
-#deploy:
-#  on:
-#    branch: bintray
-#    condition: "$LUAROCKS_DEPLOY" = "yes"
-#  provider: bintray
-#  file: "binary/bintray_descriptor.json"
-#  user:
-#    secure: FttIvDhFaLDp1EwJt5JS4ol4EuPr6yjW2HfOyXLMy9BxNWBDJ28w/Z8X0dRbNRKKNOmXMVuo2f/LozVhXq/yv6hQT453g18nKU9Ff7Yney1t9dq5u7H7NlfJ8Nf1rGJ8OMS/asxTzX/GlABPR7tpTWB3OektSNJP1yWjTw6AOHM=
-#  key:
-#    secure: Yq1/STo0q+5w0ZeKYfms4vyBlsvMgHWUGFVJDTZkIEnjE8ASijiS9yUKSBeHs6T7ynSQPc2cmzgPNk8jXkH5XG+tLPpw59SMqzanTA0FuBg1RLnPnTugbNuf7ficiTN1i++IveYlz+68qPBuClgc9+LxWEHp11xgiL/Pd0cv+oY=
-#  skip_cleanup: true
-
+deploy:
+  on:
+    branch: bintray
+  provider: bintray
+  file: "binary/bintray_descriptor.json"
+  user:
+    secure: FttIvDhFaLDp1EwJt5JS4ol4EuPr6yjW2HfOyXLMy9BxNWBDJ28w/Z8X0dRbNRKKNOmXMVuo2f/LozVhXq/yv6hQT453g18nKU9Ff7Yney1t9dq5u7H7NlfJ8Nf1rGJ8OMS/asxTzX/GlABPR7tpTWB3OektSNJP1yWjTw6AOHM=
+  key:
+    secure: Yq1/STo0q+5w0ZeKYfms4vyBlsvMgHWUGFVJDTZkIEnjE8ASijiS9yUKSBeHs6T7ynSQPc2cmzgPNk8jXkH5XG+tLPpw59SMqzanTA0FuBg1RLnPnTugbNuf7ficiTN1i++IveYlz+68qPBuClgc9+LxWEHp11xgiL/Pd0cv+oY=
+  skip_cleanup: true
