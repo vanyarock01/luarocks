@@ -97,17 +97,26 @@ end
 function fetch.find_base_dir(file, temp_dir, src_url, src_dir)
    local ok, err = fs.change_dir(temp_dir)
    if not ok then return nil, err end
+local system = require("system")
+print("step 1", system.gettime())
    fs.unpack_archive(file)
+print("step 2", system.gettime())
    local inferred_dir = src_dir or dir.deduce_base_dir(src_url)
+print("step 3", system.gettime())
    local found_dir = nil
    if fs.exists(inferred_dir) then
+print("step 4.1", system.gettime())
       found_dir = inferred_dir
    else
+print("step 4.2", system.gettime())
       util.printerr("Directory "..inferred_dir.." not found")
       local files = fs.list_dir()
+print("step 5", system.gettime())
       if files then
          table.sort(files)
+print("step 6", system.gettime(), "(", #files, ")")
          for i,filename in ipairs(files) do
+print("step 7." .. tostring(i), system.gettime())
             if fs.is_dir(filename) then
                util.printerr("Found "..filename)
                found_dir = filename
@@ -116,7 +125,9 @@ function fetch.find_base_dir(file, temp_dir, src_url, src_dir)
          end
       end
    end
+print("step 8", system.gettime())
    fs.pop_dir()
+print("step 9", system.gettime())
    return inferred_dir, found_dir
 end
 
