@@ -774,6 +774,7 @@ describe("Luarocks fs test #unit", function()
       local srcfile
       local dstfile
       local tmpdir
+      local srccontent = "foo"
 
       after_each(function()
          if srcfile then
